@@ -30,4 +30,20 @@ let getall=async(req,res)=>
         
     }
 }
-module.exports={addparty,getall}
+let vote=async(req,res)=>
+{
+    console.log(req.body);
+    
+    try
+    {
+        let r=await partymodel.findByIdAndUpdate({"_id":req.body._id},{$inc:{"votes":1}})
+     
+        res.json({"msg":"voted"})
+    }
+    catch(err)
+    {
+        console.log(err);
+        
+    }
+}
+module.exports={addparty,getall,vote}
