@@ -7,7 +7,7 @@ let addparty=async(req,res)=>
         console.log(req.body);
         let data=await partymodel({...req.body});
         await data.save();
-        res.json({"msg":"Party Added"})
+        res.status(200).json({"msg":"Party Added"})
 
     }
     catch(err)
@@ -22,7 +22,7 @@ let getall=async(req,res)=>
     try
     {
         let t=await partymodel.find({})
-        res.json(t)
+        res.status(200).json(t)
     }
     catch(err)
     {
@@ -38,12 +38,11 @@ let vote=async(req,res)=>
     {
         let r=await partymodel.findByIdAndUpdate({"_id":req.body._id},{$inc:{"votes":1}})
      
-        res.json({"msg":"voted"})
+        res.status(201).json({"msg":"voted"})
     }
     catch(err)
     {
-        console.log(err);
-        
+        console.log(err);   
     }
 }
 module.exports={addparty,getall,vote}
