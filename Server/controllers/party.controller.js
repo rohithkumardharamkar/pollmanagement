@@ -7,7 +7,7 @@ let addparty=async(req,res)=>
         console.log(req.body);
         let data=await partymodel({...req.body});
         await data.save();
-        res.status(200).json({"msg":"Party Added"})
+        res.status(201).json({"msg":"Party Added"})
 
     }
     catch(err)
@@ -21,7 +21,7 @@ let getall=async(req,res)=>
 {
     try
     {
-        let t=await partymodel.find({})
+        let t=await partymodel.find({}).sort({"votes":-1})
         res.status(200).json(t)
     }
     catch(err)
@@ -45,4 +45,17 @@ let vote=async(req,res)=>
         console.log(err);   
     }
 }
-module.exports={addparty,getall,vote}
+let maxvotes=async(req,res)=>
+{
+    try
+    {
+        let r=await partymodel.aggregate([{$group:{"_id":null,"maxvotes":{"$max":"$votes"}}}]);
+        res.status(200).json(r)
+
+    }
+    catch(err)
+    {
+        res.status(400).err({"msg":"All fiels are required"})
+    }
+}
+module.exports={addparty,getall,vote,maxvotes}

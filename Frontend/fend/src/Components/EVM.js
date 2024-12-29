@@ -6,6 +6,7 @@ import { addvote } from "../utils/vvslice";
 function EVM()
 {
     let [data,setData]=useState([]);
+    let [t,setT]=useState(false);
     let d=useDispatch()
     useEffect(()=>
     {
@@ -15,6 +16,7 @@ function EVM()
     },[])
     function fun(e)
     {
+        setT(true)
 
         d(addvote(e))
         axios.post("http://localhost:5000/party/vote",{"_id":e._id}).then((el)=>{
@@ -25,9 +27,9 @@ function EVM()
             console.log(el);
             
         })
-        
+
     }
-    return(<div>
+    return(<div className="evm">
         <table border={1}>
             <tr>
                 <th>Serial No.</th>
@@ -35,16 +37,23 @@ function EVM()
                 <th>Symbol</th>
                 <th>Candidate Name</th>
                 <th>Candidate photo</th>
+                <th></th>
             </tr>
             {
-                data.map((el)=>{
+                data.map((el,i)=>{
                     return(<tr>
-                        <td>{el._id}</td>
-                        <td>{el._id}</td>
-                        <td>{el._id}</td>
-                        <td>{el._id}</td>
-                        <td>{el._id}</td>
-                        <td><button onClick={()=>fun(el)}>Vote</button></td>
+                        <td>{i+1}</td>
+                       
+                        <td>{el.partyname}</td>
+                        <td><img src="https://www.shutterstock.com/image-vector/indian-politician-request-voting-flat-260nw-2026852076.jpg"/></td>
+
+                        
+                        <td>{el.candidateName}</td>
+                        <td><img src="https://www.shutterstock.com/image-vector/indian-politician-request-voting-flat-260nw-2026852076.jpg"/></td>
+                       
+                        <td>{t?<button disabled id="r">you have voted</button>:<button onClick={()=>fun(el)}>VOTE</button>}
+
+                        </td>
                     </tr>)
                 })
             }

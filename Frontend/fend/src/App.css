@@ -1,7 +1,188 @@
-.addcon div
+.con
 {
   display: flex;
+}
+.c2{
+  width: 60%;
+  
+  height: 100vh;
+}
+
+.c1 
+{
+  width: 40%;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: rgb(42, 42, 136);
+  color: white;
+}
+.c2{
+  display: flex;
   flex-direction: column;
+  border-radius: 5px;
+  border: 2px solid black;
   width: 600px;
   height: 60vh;
+  justify-content: space-evenly;
+  align-items: center;
+  margin: auto;
+  background-color: rgb(231, 231, 231);
+
+}
+.c2 button 
+{
+  background-color: rgb(144, 144, 255);
+  color: black;
+  width: 100px;
+  height: 5vh;
+  border-radius: 10px;
+  cursor: pointer;
+}
+.c1 img
+{
+  width: 300px;
+  height: 50vh;
+}
+#x
+{
+  border: 1px solid black;
+  padding: 10px;
+  width: 300px;
+}
+.evm table
+{
+  margin: auto;
+  width: 60%;
+  text-align: center;
+  padding: 40px;
+  border-radius: 30px;
+  background-color: rgb(241, 232, 106);
+}
+.evm table button
+{
+  background-color: rgb(77, 184, 238);
+  color: white;
+  border: none;
+  width: 100px;
+  height: 5vh;
+  border-radius: 5px;
+  cursor: pointer;
+}
+.evm table img
+{
+  width: 90px;
+  height: 90px;
+  border-radius: 50%;
+}
+#r
+{
+  background-color: red;
+}
+.vvpat
+{
+  
+  
+}
+.vvpat img
+{
+  width: 200px;
+  height: 200px;
+  border: 2px solid black;
+  margin: 20px;
+  border-radius: 20px;
+}
+.ccc
+{
+  display: flex;
+  flex-wrap: wrap;
+}
+.home
+{
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  width: 100%;
+  height: 100vh;
+  background-color: rgb(255, 255, 255);
+}
+
+.home div
+{
+
+  text-decoration: none;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 200px;
+  height: 10vh;
+  background-color: rgb(60, 219, 255);
+  border-radius: 10px;
+  
+}
+.home a{
+  text-decoration: none;
+  color: black;
+  font-size: 20px;
+}
+#red
+{
+  background-color: red;
+
+}
+#green
+{
+  background-color: green;
+}
+.container
+{
+  width: 500px;
+  height: 50vh;
+  border: 2px solid black;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  align-items: center;
+  background-color: rgb(241, 249, 255);
+  border-radius: 20px;
+  position: relative;
+  top: 300px;
+  left: 50%;
+  transform: translate(-50%,-50%);
+  background: transparent;
+
+}
+.ct{
+  height: 100vh;
+  background-size: 100% 100%;
+  background: url('https://theylacproject.com/wp-content/uploads/2024/03/Election-Awareness-Banner-5-2024-small-min.jpg');
+
+}
+.container button
+{
+  width: 100px;
+  height: 5vh;
+  background-color: rgb(85, 231, 223);
+  border: none;
+  margin: 10px;
+  border-radius: 10px;
+}
+.container input
+{
+  width: 200px;
+  padding: 10px;
+  border: 2px solid black;
+}
+a{
+  text-decoration: none;
+  color: black;
+}
+.home
+{
+  background: url('https://theylacproject.com/wp-content/uploads/2024/03/Election-Awareness-Banner-5-2024-small-min.jpg');
+  background-size: 100% 100%;
+  background-attachment: fixed;
+  border: 0px;
+  margin: 0px;
 }

@@ -3,6 +3,7 @@ let mongoose=require("mongoose");
 let app=express();
 let cors=require('cors');
 const partyrouter = require("./routes/party.route");
+const userRoute = require("./routes/user.route");
 
 mongoose.connect("mongodb://127.0.0.1:27017/Voter").then((el)=>
 {
@@ -16,4 +17,5 @@ mongoose.connect("mongodb://127.0.0.1:27017/Voter").then((el)=>
 app.use(cors())
 app.use(express.json());
 app.use("/party",partyrouter);
+app.use("/user",userRoute);
 app.listen(5000)
