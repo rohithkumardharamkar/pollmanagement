@@ -11,6 +11,7 @@ import Login from './Components/Login';
 import Admin from './Components/Admin';
 import Home from './Components/Home';
 import Reg from './Components/Reg';
+import Adminhome from './Components/Adminhome';
 function App() {
   let VVpat=lazy(()=>import('./Components/VVpat'))
   return (
@@ -28,6 +29,7 @@ function App() {
      <Route path='/login' element={<Login/>}/>
      <Route path='/admin' element={<Admin/>}/>
      <Route path='/reg' element={<Reg/>}/>
+     <Route path='/ahome' element={<Adminhome/>}/>
      </Routes>
      </BrowserRouter>
       </Provider>

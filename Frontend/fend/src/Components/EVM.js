@@ -2,11 +2,13 @@ import axios from "axios"
 import { useEffect, useState } from "react"
 import { useDispatch } from "react-redux";
 import { addvote } from "../utils/vvslice";
+import { useNavigate } from "react-router-dom";
 
 function EVM()
 {
     let [data,setData]=useState([]);
     let [t,setT]=useState(false);
+    let n=useNavigate("")
     let d=useDispatch()
     useEffect(()=>
     {
@@ -27,6 +29,8 @@ function EVM()
             console.log(el);
             
         })
+        setTimeout(()=>
+        {n("/login")},3000)
 
     }
     return(<div className="evm">
