@@ -6,7 +6,6 @@ let check=async(req,res)=>
     {
         
         let r=await usermodel.findById({"_id":req.body._id});
-        console.log(r);
         
         if(r==null)
         {

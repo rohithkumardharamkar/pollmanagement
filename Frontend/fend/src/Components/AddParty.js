@@ -1,22 +1,32 @@
 import { useState } from "react"
 import axios from 'axios';
+import { check } from "../utils/check";
+import { useNavigate } from "react-router-dom";
 
 
 function AddParty() {
+    
     let [data, setData] = useState({});
-    let [err, setErr] = useState("")
+    let [err, setErr] = useState("");
+    let n=useNavigate()
     function fun(e) {
         setData({ ...data, [e.target.name]: e.target.value })
     }
+    function f(e)
+    {
+        setData({...data,"symbol":e.target.files[0]})
+    }
     function add() {
-        
-        
-        axios.post("http://localhost:5000/party/addparty", data).then((el) => {
-            console.log(el)
+        let c=check(data._id,data.partyname,data.candidateName,data.sname); 
+        let d = new FormData()
+        for (let el in data) {
+            d.append(el, data[el])
+        }
+        axios.post("http://localhost:5000/party/addparty", d).then((el) => {
+            n("/ahome")
 
         })
             .catch((err) => {
-                console.log(err.msg);
                 setErr("ERROR")
 
             })
@@ -33,12 +43,9 @@ function AddParty() {
             <input id="x" type="text" placeholder="Enter Symbol Name" onChange={fun} name="sname" value={data.sname} />
             <div>
                 <label>Upload Symbol : </label>
-                <input type='file' />
+                <input type='file' onChange={f} />
             </div>
-            <div>
-                <label>Upload photo :</label>
-                <input type='file' />
-            </div>
+            
             <div>{err}</div>
             <button onClick={add}>Add Party</button>
         </div>

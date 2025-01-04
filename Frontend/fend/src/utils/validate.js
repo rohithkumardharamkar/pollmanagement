@@ -1,7 +1,7 @@
 export let checkvalidate=(e,o)=>
 {
     let r=/^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/.test(e);
-    let s=/^\d{5}$/.test(o);
+    let s=/^\d{7}$/.test(o);
     if(!r)
     {
         return "Invalid email-id";

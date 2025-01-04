@@ -1,11 +1,38 @@
 const partymodel = require("../models/party.model");
+let multer=require("multer");
+let bodyParser=require("body-parser")
+let storage=multer.diskStorage({
+    destination:function(req,file,cb)
+    {
+        cb(null,'./imgs')
+    },
+    filename:function(req,file,cb)
+    {
+        let us=Date.now()+'-'+Math.round(Math.random()*1E9)
+        cb(null,file.fieldname+'-'+us+'.'+file.mimetype.split("/")[1])
+    }
 
+})
+const upload=multer({storage:storage})
+let deleteall=async(req,res)=>
+{
+    try
+    {
+        await partymodel.deleteMany({})
+        res.json({"msg":"Details deleted"})
+    }
+    catch(err)
+    {
+        console.log(err);
+        
+
+    }
+}
 let addparty=async(req,res)=>
 {
     try
     {
-        console.log(req.body);
-        let data=await partymodel({...req.body});
+        let data=await partymodel({...req.body,"symbol":req.file.filename});
         await data.save();
         res.status(201).json({"msg":"Party Added"})
 
@@ -32,7 +59,6 @@ let getall=async(req,res)=>
 }
 let vote=async(req,res)=>
 {
-    console.log(req.body);
     
     try
     {
@@ -58,4 +84,4 @@ let maxvotes=async(req,res)=>
         res.status(400).err({"msg":"All fiels are required"})
     }
 }
-module.exports={addparty,getall,vote,maxvotes}
+module.exports={addparty,getall,vote,maxvotes,upload,deleteall}

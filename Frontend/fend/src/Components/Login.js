@@ -20,6 +20,7 @@ function Login() {
         else
         {
             console.log("wromg");
+
             return
             
         }
@@ -42,6 +43,7 @@ function Login() {
         
         if(t3.current.value=='')
             {
+
                 return
             }
         let a=t3.current.value;
@@ -73,6 +75,7 @@ function Login() {
             }
             else
             {
+
                 return
             }
        
