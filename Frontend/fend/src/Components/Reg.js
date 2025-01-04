@@ -47,15 +47,12 @@ function Reg()
           });
           n("/admin")
           
-          // ...
         })
         .catch((error) => {
-          const errorCode = error.code;
-          const errorMessage = error.message;
-          console.log(errorMessage);
-          setErr(errorMessage)
+      
+          console.log( error.message);
+          setErr( error.message)
           
-          // ..
         });
       
         

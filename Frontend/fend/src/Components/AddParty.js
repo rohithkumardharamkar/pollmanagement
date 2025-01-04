@@ -2,6 +2,7 @@ import { useState } from "react"
 import axios from 'axios';
 import { check } from "../utils/check";
 import { useNavigate } from "react-router-dom";
+import { url } from "../utils/url";
 
 
 function AddParty() {
@@ -22,7 +23,7 @@ function AddParty() {
         for (let el in data) {
             d.append(el, data[el])
         }
-        axios.post("http://localhost:5000/party/addparty", d).then((el) => {
+        axios.post(`${url}/party/addparty`, d).then((el) => {
             n("/ahome")
 
         })

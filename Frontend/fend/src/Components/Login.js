@@ -1,6 +1,7 @@
 import axios from "axios";
 import { useRef, useState } from "react"
 import { useNavigate } from "react-router-dom";
+import { url } from "../utils/url";
 
 function Login() {
     let t1=useRef();
@@ -28,7 +29,7 @@ function Login() {
         {
             return
         }
-        axios.post("http://localhost:5000/user/getotp",{'email':t2.current.value}).then((el)=>
+        axios.post(`${url}/user/getotp`,{'email':t2.current.value}).then((el)=>
         {
             setO(el.data.OTP)
         })
@@ -60,7 +61,7 @@ function Login() {
             console.log("jjjjjj");
             if(t1.current.value!='')
                 {
-                    axios.post("http://localhost:5000/user/check",{_id:t1.current.value,email:t2.current.value}).then((el)=>{
+                    axios.post(`${url}/user/check`,{_id:t1.current.value,email:t2.current.value}).then((el)=>{
                         console.log(el);
                         setErr(el.data.msg)
                         n("/evm")

@@ -31,7 +31,6 @@ function Admin()
         signInWithEmailAndPassword(auth, t2.current.value, t3.current.value)
   .then((userCredential) => {
     const user = userCredential.user;
-    console.log(user);
     nav("/ahome")
     
   })

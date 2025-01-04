@@ -1,6 +1,7 @@
 import { useSelector } from "react-redux"
 import store from "../utils/store"
 import { useState } from "react";
+import { url } from "../utils/url";
 
 function VVpat()
 {
@@ -10,7 +11,6 @@ function VVpat()
    console.log(res);
    
    
-    // console.log(localStorage);
 
     let [data,setData]=useState(res);
 
@@ -21,8 +21,7 @@ function VVpat()
             data.map((el)=>
             {
                 return(<div className="vvpat">
-<img src="https://www.shutterstock.com/image-vector/indian-politician-request-voting-flat-260nw-2026852076.jpg"/>
-
+<img src={`${url}/imgs/${el.symbol}`}/>
                 </div>)
             })
         }

@@ -3,6 +3,7 @@ import { useEffect, useState } from "react"
 import { useDispatch } from "react-redux";
 import { addvote } from "../utils/vvslice";
 import { useNavigate } from "react-router-dom";
+import { url } from "../utils/url";
 
 function EVM()
 {
@@ -12,7 +13,7 @@ function EVM()
     let d=useDispatch()
     useEffect(()=>
     {
-        axios.get("http://localhost:5000/party/getall").then((res)=>{
+        axios.get(`${url}/party/getall`).then((res)=>{
             setData(res.data)
         })
     },[])
@@ -22,7 +23,7 @@ function EVM()
         setT(true)
 
         d(addvote(e))
-        axios.post("http://localhost:5000/party/vote",{"_id":e._id}).then((el)=>{
+        axios.post(`${url}/party/vote`,{"_id":e._id}).then((el)=>{
            
         }).catch((el)=>
         {
@@ -30,10 +31,12 @@ function EVM()
             
         })
         setTimeout(()=>
-        {n("/login")},3000)
+        {
+            n("/")},3000)
 
     }
     return(<div className="evm">
+        {data.length==0 ?<div>NO ELECTION AT PRESENT</div>:
         <table border={1}>
             <tr>
                 <th>Serial No.</th>
@@ -48,7 +51,7 @@ function EVM()
                     return(<tr>
                         <td>{i+1}</td>
                         <td>{el.partyname}</td>
-                        <td><img src={`http://localhost:5000/imgs/${el.symbol}`}/></td>
+                        <td><img src={`${url}/imgs/${el.symbol}`}/></td>
                         <td>{el.candidateName}</td>
                         <td>{t?<button disabled id="r">you have voted</button>:<button onClick={()=>fun(el)}>VOTE</button>}
 
@@ -56,7 +59,7 @@ function EVM()
                     </tr>)
                 })
             }
-        </table>
+        </table>}
 
     </div>)
 }

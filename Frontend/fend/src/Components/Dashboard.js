@@ -1,11 +1,13 @@
 import axios from "axios"
 import { useEffect, useState } from "react"
+import { url } from "../utils/url";
 
 function Dashboard()
 {
     let [data,setData]=useState([]);
     let [b,setB]=useState(0);
     let [max,setMax]=useState(0);
+    let [err,setErr]=useState("")
 
     function fun()
     {
@@ -13,23 +15,25 @@ function Dashboard()
     }
     useEffect(()=>
     {
-        axios.get("http://localhost:5000/party/getall").then((el)=>{
+        axios.get(`${url}/party/getall`).then((el)=>{
             setData(el.data)
         })
-        if(data.length>2)
-        {
-        axios.get("http://localhost:5000/party/max").then((el)=>{
+        
+        axios.get(`${url}/party/max`).then((el)=>{
            
            setMax(el.data[0].maxvotes)
-        })
-    }
-
+        }).catch((el)=>setErr("error"))
+    
     },[b])
+    
+    console.log(err);
     
     
     return(<div className="evm">
+      
       {data ?  <button onClick={fun}>Refresh</button>:<div>NO ELECTION HAPPENED</div>}
-       {data.length>2 &&  <table border={1}>
+      {err  && <div> NO ELECTION AT PRESENT</div>}
+       {data.length>1 &&  <table border={1}>
             <tr>
                 <th>Serial No.</th>
                 <th>Party Name</th>
